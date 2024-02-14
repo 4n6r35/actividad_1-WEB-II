@@ -1,28 +1,39 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import './App.css'
-import { Card } from './components/Card/'
-import { Contador } from './components/Contador'
+import "./App.css";
+import { Card, Contador } from "./components";
+const Infodata = [
+  {
+    title: "junior",
+    description: "El Junior FC de Barranquilla, Jugara contra el Nacional FC",
+    img: "https://th.bing.com/th/id/R.ace04d34cdb40120c2b7a891d5b0a2b8?rik=CXEr2o%2fMXGS5fg&pid=ImgRaw&r=0",
+  },
+  {
+    title: "nacional",
+    description: "akgfds fdsifsjdfij sdfisoq0eoq0e qe0q9eq0eq",
+    img: "https://caracoltv.brightspotcdn.com/dims4/default/256be7a/2147483647/strip/true/crop/1000x716+0+0/resize/1000x716!/quality/90/?url=https%3A%2F%2Fcaracol-brightspot.s3-us-west-2.amazonaws.com%2Fassets%2Fbluradio%2Fbluradio-atleticonacional-foto-twitte.jpg",
+  },
+];
 
 function App() {
-  const info = [{title:"junior", description:"akjfdohjiasdhasdjoiawshnidjadkhnadlkñawhndalkdnakdjnmlaakiad", img:"https://th.bing.com/th/id/R.ace04d34cdb40120c2b7a891d5b0a2b8?rik=CXEr2o%2fMXGS5fg&pid=ImgRaw&r=0"},
-  {title:"nacional", description:"akgfdsfdsifsjdfijsdfisoq0eoq0eqe0q9eq0eq", img:"https://th.bing.com/th/id/R.3de4a5dac285db180f34d294d1892298?rik=Z2JhV4KnZnkDqw&riu=http%3a%2f%2f2.bp.blogspot.com%2f-pC4q1Y_qN6Y%2fUSZr44HBi9I%2fAAAAAAAAABk%2fiSfzWuG4QZ4%2fs1600%2fescudo.jpg&ehk=fY59WXZpyPjYfAW%2bBOQnfGuhog1YFQmD2CfuFGjx93Y%3d&risl=&pid=ImgRaw&r=0"}]
-  const [count, setCount] = useState(0)
+  const info = [...Infodata];
+
+  const [count, setCount] = useState(0);
   return (
     <>
-    <section className='border-solid border-2 m-6 p-2'>
-      <Card info={info[0]} />
-    </section>
-    <section className='flex flex-wrap justify-around gap-6 border-solid border-2 m-6 p-2 box-border'>
-      {
-        info.map(info=><Card key={info.title} count={count} info={info}/>)
-      }
-    </section>
+      <section className="py-20 px-8 grid grid-cols-1 gap-24 border-solid border-2 rounded-md justify-items-center">
+        <Card info={info[0]} state={true}/>
+      </section>
+      <section className="py-20 px-11 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-24 border-solid border-2 rounded-md justify-items-center">
+        {[...Infodata, ...Infodata, ...Infodata].map((info) => (
+          <Card key={info.title} count={count} info={info} />
+        ))}
+      </section>
       <section>
-        <Contador count={count} setCount={setCount}/>
+        <Contador count={count} setCount={setCount} />
       </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
